@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import GardenSvg from './Components/Garden'; // Import the GardenSvg component
+import GardenSvg from './Components/Garden';
 import { 
   tree1, tree10, tree11, tree12, tree13, tree14, tree15, tree16, 
   tree17, tree18, tree19, tree2, tree20, tree3, tree4, tree5, tree6, 
@@ -9,7 +9,6 @@ import {
 const App = () => {
   const [selectedTree, setSelectedTree] = useState(null);
 
-  // Daraxtlar haqidagi ma'lumotlar
   const trees = [
     { id: 1, name: 'Saksaul daraxti', age: 12, location: 'Shimoli-g‘arbiy burchak', health: 'Yaxshi', image: tree },
     { id: 2, name: 'Qizil palma daraxti', age: 21, location: 'Janubi-sharqiy burchak', health: 'O‘rta holatda' , image: tree1 },
@@ -35,8 +34,8 @@ const App = () => {
   ];
 
   const handleTreeClick = (e) => {
-    const treeId = e.target.getAttribute('data-id');
-    const tree = trees.find(t => t.id === parseInt(treeId, 10));
+    const treeId = e?.target?.getAttribute('data-id');
+    const tree = trees.find(t => t?.id === parseInt(treeId, 10));
     setSelectedTree(tree);
   };
 
@@ -47,12 +46,12 @@ const App = () => {
           <GardenSvg onClick={handleTreeClick} />
           {selectedTree && (
             <div className="tree-info">
-              <img src={selectedTree.image} alt={selectedTree.name} className="tree-image" />
+              <img src={selectedTree?.image} alt={selectedTree?.name} className="tree-image" />
               <div>
                 <h2>{selectedTree.name}</h2>
-                <p><strong>Yoshi:</strong> {selectedTree.age} yil</p>
-                <p><strong>Joylashuvi:</strong> {selectedTree.location}</p>
-                <p><strong>Sog‘lig‘i:</strong> {selectedTree.health}</p>
+                <p><strong>Yoshi:</strong> {selectedTree?.age} yil</p>
+                <p><strong>Joylashuvi:</strong> {selectedTree?.location}</p>
+                <p><strong>Sog"lig"i:</strong> {selectedTree?.health}</p>
               </div>
             </div>
           )}
@@ -63,3 +62,5 @@ const App = () => {
 };
 
 export default App;
+
+
