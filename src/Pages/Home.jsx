@@ -1,12 +1,13 @@
-import React from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import Home from './Pages/Home';
-import About from './Components/About';
+import React, { useState } from 'react';
+import { useNavigate, Link } from 'react-router-dom';
+
 import { 
   tree1, tree10, tree11, tree12, tree13, tree14, tree15, tree16, 
   tree17, tree18, tree19, tree2, tree20, tree3, tree4, tree5, tree6, 
   tree7, tree8, tree9, tree 
-} from './assets';
+} from '../assets';
+import GardenSvg from '../Components/Garden';
+import Navbar from '../Components/Navbar/Navbar';
 
 const trees = [
   { id: 1, name: 'Saksaul daraxti', age: 12, location: 'Shimoli-g‘arbiy burchak', health: 'Yaxshi', image: tree },
@@ -31,15 +32,37 @@ const trees = [
   { id: 20, name: 'Meyvali chinor daraxti', age: 10, location: 'Janubi-sharqiy burchak', health: 'Yaxshi', image: tree19 },
   { id: 21, name: 'Kedr daraxti', age: 121, location: 'Shimoli-g‘arbiy burchak', health: 'Yaxshi', image: tree20 },
 ];
-const App = () => {
+
+const Home = () => {
+  const [selectedTree, setSelectedTree] = useState(null);
+
+  const handleTreeClick = (e) => {
+    const treeId = e?.target?.getAttribute('data-id');
+    const tree = trees?.find(t => t?.id === parseInt(treeId, 10));
+    setSelectedTree(tree);
+  };
+
   return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/about/:id" element={<About trees={trees} />} />
-      </Routes>
-    </Router>
+   <>
+   <Navbar/>
+    <div className="container">
+      <div className="garden-container">
+        <GardenSvg onClick={handleTreeClick} />
+        {selectedTree && (
+          <Link to={`/about/${selectedTree?.id}`} className="tree-info">
+            <img src={selectedTree?.image} alt={selectedTree?.name} className="tree-image" />
+            <div>
+              <h2>{selectedTree?.name}</h2>
+              <p><strong>Yoshi:</strong> {selectedTree?.age} yil</p>
+              <p><strong>Joylashuvi:</strong> {selectedTree?.location}</p>
+              <p><strong>Sog'lig'i:</strong> {selectedTree?.health}</p>
+            </div>
+          </Link>
+        )}
+      </div>
+    </div>
+   </>
   );
 };
 
-export default App;
+export default Home;

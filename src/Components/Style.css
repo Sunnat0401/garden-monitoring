@@ -1,0 +1,50 @@
+.tree-information {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 90vh; 
+    padding: 20px;
+    background-color: #f0f4f8;
+  }
+  .tree-picture {
+    width: 300px; 
+    height: auto;
+    margin-bottom: 20px; 
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
+  }
+  
+  .tree-information h2 {
+    font-size: 2rem;
+    margin-bottom: 10px;
+    color: #333; 
+  }
+  
+  .tree-information p {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+    color: #555; 
+  }
+  
+  .tree-information strong {
+    color: #333;
+  }
+  
+  .tree-information div {
+    text-align: center;
+    max-width: 600px; 
+  }
+  
+  @media (min-width: 768px) {
+    .tree-information {
+      flex-direction: row; 
+      text-align: left;
+    }
+  
+    .tree-picture {
+      max-width: 40%;
+      margin-right: 40px;
+    }
+  }
+  
